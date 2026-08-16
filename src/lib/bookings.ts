@@ -1,3 +1,5 @@
+export type BookingStatus = "pending" | "confirmed" | "cancelled";
+
 export type Booking = {
   id: string;
   serviceId: string;
@@ -8,6 +10,7 @@ export type Booking = {
   firstName: string;
   phone: string;
   createdAt: string;
+  status: BookingStatus;
 };
 
 const KEY = "maison-lumiere-bookings";
