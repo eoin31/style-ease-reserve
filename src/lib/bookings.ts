@@ -1,3 +1,5 @@
+export type BookingStatus = "pending" | "confirmed" | "cancelled";
+
 export type Booking = {
   id: string;
   serviceId: string;
@@ -8,6 +10,7 @@ export type Booking = {
   firstName: string;
   phone: string;
   createdAt: string;
+  status: BookingStatus;
 };
 
 const KEY = "maison-lumiere-bookings";
@@ -23,6 +26,7 @@ const SEED: Booking[] = [
     firstName: "Camille",
     phone: "06 12 45 78 90",
     createdAt: new Date().toISOString(),
+    status: "confirmed",
   },
   {
     id: "seed-2",
@@ -34,6 +38,7 @@ const SEED: Booking[] = [
     firstName: "Yanis",
     phone: "07 88 21 03 44",
     createdAt: new Date().toISOString(),
+    status: "confirmed",
   },
   {
     id: "seed-3",
@@ -45,6 +50,7 @@ const SEED: Booking[] = [
     firstName: "Sofia",
     phone: "06 71 09 55 12",
     createdAt: new Date().toISOString(),
+    status: "pending",
   },
   {
     id: "seed-4",
@@ -56,6 +62,7 @@ const SEED: Booking[] = [
     firstName: "Léa",
     phone: "06 34 77 18 02",
     createdAt: new Date().toISOString(),
+    status: "pending",
   },
 ];
 
@@ -87,8 +94,11 @@ export function getBookings(): Booking[] {
   }
 }
 
-export function addBooking(b: Omit<Booking, "id" | "createdAt">): Booking {
+export function addBooking(
+  b: Omit<Booking, "id" | "createdAt" | "status"> & { status?: BookingStatus },
+): Booking {
   const booking: Booking = {
+    status: "pending",
     ...b,
     id: `bk-${Date.now()}`,
     createdAt: new Date().toISOString(),
@@ -100,8 +110,26 @@ export function addBooking(b: Omit<Booking, "id" | "createdAt">): Booking {
   return booking;
 }
 
+function save(all: Booking[]) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(KEY, JSON.stringify(all));
+  }
+}
+
+export function setBookingStatus(id: string, status: BookingStatus): Booking[] {
+  const all = getBookings().map((b) => (b.id === id ? { ...b, status } : b));
+  save(all);
+  return all;
+}
+
+export function deleteBooking(id: string): Booking[] {
+  const all = getBookings().filter((b) => b.id !== id);
+  save(all);
+  return all;
+}
+
 export function takenSlots(dateISO: string): string[] {
   return getBookings()
-    .filter((b) => b.date === dateISO)
+    .filter((b) => b.date === dateISO && b.status !== "cancelled")
     .map((b) => b.time);
 }
