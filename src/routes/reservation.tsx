@@ -25,7 +25,7 @@ export const Route = createFileRoute("/reservation")({
       },
     ],
   }),
-  component: Reservation;
+  component: Reservation,
 });
 
 const contactSchema = z.object({
