@@ -57,7 +57,7 @@ function Reservation() {
   const [time, setTime] = useState<string | null>(null);
   const [firstName, setFirstName] = useState("");
   const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState<{ firstName?: string; phone?: string }>({});
+  const [errors, setErrors] = useState<{ firstName?: string | undefined; phone?: string | undefined }>({});
   const [confirmed, setConfirmed] = useState<Booking | null>(null);
 
   const days = useMemo(() => nextDays(14), []);
@@ -307,7 +307,7 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 function formatLong(iso: string) {
-  const [y, m, d] = iso.split("-").map(Number);
+  const [y, m, d] = iso.split("-").map(Number) as [number, number, number];
   return new Date(y, m - 1, d).toLocaleDateString("fr-FR", {
     weekday: "long",
     day: "numeric",
