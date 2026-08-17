@@ -11,8 +11,10 @@ function getSessionConfig() {
     maxAge: 60 * 60 * 12,
     cookie: {
       httpOnly: true,
-      secure: process.env["NODE_ENV"] === "production",
-      sameSite: "lax" as const,
+      // The app is previewed inside a cross-site iframe: the cookie must be
+      // SameSite=None + Secure, otherwise the browser never sends it back.
+      secure: true,
+      sameSite: "none" as const,
       path: "/",
     },
   };
