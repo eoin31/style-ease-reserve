@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -24,7 +24,7 @@ import {
 } from "@/lib/bookings";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { lockSalonAdmin, requireSalonAdmin } from "@/lib/salon-gate.functions";
+import { isSalonAdminUnlocked, lockSalonAdmin } from "@/lib/salon-gate.functions";
 
 
 export const Route = createFileRoute("/admin")({
@@ -44,7 +44,8 @@ export const Route = createFileRoute("/admin")({
     ],
   }),
   beforeLoad: async () => {
-    await requireSalonAdmin();
+    const { unlocked } = await isSalonAdminUnlocked();
+    if (!unlocked) throw redirect({ to: "/connexion" });
   },
   component: Admin,
 });
