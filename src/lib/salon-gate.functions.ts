@@ -44,8 +44,8 @@ export const lockSalonAdmin = createServerFn({ method: "POST" }).handler(async (
   return { ok: true as const };
 });
 
-export const requireSalonAdmin = createServerFn({ method: "GET" }).handler(async () => {
+export const isSalonAdminUnlocked = createServerFn({ method: "GET" }).handler(async () => {
   const session = await useSession<GateSession>(getSessionConfig());
-  if (!session.data.unlocked) throw redirect({ to: "/connexion" });
-  return { unlocked: true as const };
+  return { unlocked: session.data.unlocked === true };
+
 });
