@@ -43,8 +43,12 @@ export const Route = createFileRoute("/admin")({
       },
     ],
   }),
+  beforeLoad: async () => {
+    await requireSalonAdmin();
+  },
   component: Admin,
 });
+
 
 const STATUS_LABEL: Record<BookingStatus, string> = {
   pending: "En attente",
