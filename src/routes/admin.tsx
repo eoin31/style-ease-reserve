@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
@@ -7,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Euro,
+  LogOut,
   Phone,
   Trash2,
   Users,
@@ -22,6 +24,8 @@ import {
 } from "@/lib/bookings";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { lockSalonAdmin, requireSalonAdmin } from "@/lib/salon-gate.functions";
+
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
