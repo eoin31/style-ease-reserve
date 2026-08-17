@@ -94,17 +94,26 @@ function Admin() {
 
   return (
     <main className="mx-auto max-w-2xl px-6 pt-8 pb-16">
-      <Link
-        to="/"
-        className="flex items-center gap-2 text-xs tracking-widest text-muted-foreground uppercase"
-      >
-        <ArrowLeft className="h-4 w-4" /> Site
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-xs tracking-widest text-muted-foreground uppercase"
+        >
+          <ArrowLeft className="h-4 w-4" /> Site
+        </Link>
+        <button
+          onClick={onLogout}
+          className="flex items-center gap-1.5 text-xs tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
+        >
+          <LogOut className="h-3.5 w-3.5" /> Déconnexion
+        </button>
+      </div>
       <p className="eyebrow mt-6">Espace coiffeur</p>
       <h1 className="mt-2 text-3xl">Tableau de bord</h1>
       <p className="mt-2 text-xs text-muted-foreground">
-        Démonstration — données fictives, aucun mot de passe requis.
+        Session sécurisée — rendez-vous de démonstration.
       </p>
+
 
       <div className="mt-6 grid grid-cols-4 gap-3">
         <Stat icon={CalendarDays} label="Aujourd'hui" value={String(todays.length)} />
