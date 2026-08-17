@@ -58,10 +58,20 @@ const STATUS_LABEL: Record<BookingStatus, string> = {
 
 function Admin() {
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const router = useRouter();
+  const lock = useServerFn(lockSalonAdmin);
 
   useEffect(() => {
     setBookings(getBookings());
   }, []);
+
+  async function onLogout() {
+    await lock({});
+    await router.invalidate();
+    await router.navigate({ to: "/connexion" });
+  }
+
+
 
   const today = toISODate(new Date());
   const sorted = useMemo(
