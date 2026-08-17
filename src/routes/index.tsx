@@ -33,9 +33,10 @@ function Home() {
           alt="Intérieur du salon de coiffure Maison Lumière"
           width={1024}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-45"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+
         <div className="relative mx-auto max-w-2xl px-6 pt-20 pb-16 text-center">
           <p className="eyebrow">{SALON.tagline}</p>
           <h1 className="mt-4 text-5xl leading-[1.05] sm:text-6xl">
