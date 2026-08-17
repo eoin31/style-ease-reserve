@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { useSession } from "@tanstack/react-start/server";
-import { redirect } from "@tanstack/react-router";
 import { createHash, timingSafeEqual } from "node:crypto";
 
 type GateSession = { unlocked?: boolean };
@@ -10,9 +9,15 @@ function getSessionConfig() {
     password: process.env["SESSION_SECRET"]!,
     name: "salon-gate",
     maxAge: 60 * 60 * 12,
-    cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
+    cookie: {
+      httpOnly: true,
+      secure: process.env["NODE_ENV"] === "production",
+      sameSite: "lax" as const,
+      path: "/",
+    },
   };
 }
+
 
 function passwordMatches(input: string, expected: string): boolean {
   const a = createHash("sha256").update(input, "utf8").digest();
@@ -39,8 +44,8 @@ export const lockSalonAdmin = createServerFn({ method: "POST" }).handler(async (
   return { ok: true as const };
 });
 
-export const requireSalonAdmin = createServerFn({ method: "GET" }).handler(async () => {
+export const isSalonAdminUnlocked = createServerFn({ method: "GET" }).handler(async () => {
   const session = await useSession<GateSession>(getSessionConfig());
-  if (!session.data.unlocked) throw redirect({ to: "/connexion" });
-  return { unlocked: true as const };
+  return { unlocked: session.data.unlocked === true };
+
 });
