@@ -54,31 +54,32 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.16 0.008 60);
-  --foreground: oklch(0.95 0.012 85);
-  --surface: oklch(0.21 0.01 60);
-  --card: oklch(0.21 0.01 60);
-  --card-foreground: oklch(0.95 0.012 85);
-  --popover: oklch(0.21 0.01 60);
-  --popover-foreground: oklch(0.95 0.012 85);
-  --primary: oklch(0.79 0.09 85);
-  --primary-foreground: oklch(0.18 0.01 60);
-  --gold: oklch(0.79 0.09 85);
-  --gold-soft: oklch(0.62 0.07 82);
-  --secondary: oklch(0.26 0.01 60);
-  --secondary-foreground: oklch(0.95 0.012 85);
-  --muted: oklch(0.26 0.01 60);
-  --muted-foreground: oklch(0.72 0.015 80);
-  --accent: oklch(0.3 0.02 70);
-  --accent-foreground: oklch(0.95 0.012 85);
-  --destructive: oklch(0.6 0.19 25);
-  --destructive-foreground: oklch(0.97 0.01 85);
-  --border: oklch(0.32 0.012 70);
-  --input: oklch(0.32 0.012 70);
-  --ring: oklch(0.79 0.09 85);
-  --gradient-gold: linear-gradient(135deg, oklch(0.86 0.08 88), oklch(0.68 0.08 78));
-  --shadow-luxe: 0 24px 60px -24px oklch(0 0 0 / 0.7);
+  --background: oklch(0.985 0.008 85);
+  --foreground: oklch(0.26 0.02 60);
+  --surface: oklch(0.965 0.012 85);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.26 0.02 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.26 0.02 60);
+  --primary: oklch(0.55 0.09 62);
+  --primary-foreground: oklch(0.99 0.006 85);
+  --gold: oklch(0.55 0.09 62);
+  --gold-soft: oklch(0.72 0.07 70);
+  --secondary: oklch(0.95 0.015 80);
+  --secondary-foreground: oklch(0.3 0.02 60);
+  --muted: oklch(0.95 0.015 80);
+  --muted-foreground: oklch(0.5 0.02 70);
+  --accent: oklch(0.93 0.03 80);
+  --accent-foreground: oklch(0.28 0.02 60);
+  --destructive: oklch(0.55 0.17 25);
+  --destructive-foreground: oklch(0.99 0.006 85);
+  --border: oklch(0.9 0.015 80);
+  --input: oklch(0.9 0.015 80);
+  --ring: oklch(0.55 0.09 62);
+  --gradient-gold: linear-gradient(135deg, oklch(0.6 0.1 65), oklch(0.45 0.08 55));
+  --shadow-luxe: 0 18px 40px -24px oklch(0.4 0.05 60 / 0.28);
 }
+
 
 @layer base {
   * {

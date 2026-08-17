@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ConnexionRouteImport } from './routes/connexion'
 import { Route as ReservationRouteImport } from './routes/reservation'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnexionRoute = ConnexionRouteImport.update({
+  id: '/connexion',
+  path: '/connexion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReservationRoute = ReservationRouteImport.update({
   id: '/reservation',
   path: '/reservation',
@@ -32,30 +38,34 @@ const ReservationRoute = ReservationRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/connexion': typeof ConnexionRoute
   '/reservation': typeof ReservationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/connexion': typeof ConnexionRoute
   '/reservation': typeof ReservationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/connexion': typeof ConnexionRoute
   '/reservation': typeof ReservationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/reservation'
+  fullPaths: '/' | '/admin' | '/connexion' | '/reservation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/reservation'
-  id: '__root__' | '/' | '/admin' | '/reservation'
+  to: '/' | '/admin' | '/connexion' | '/reservation'
+  id: '__root__' | '/' | '/admin' | '/connexion' | '/reservation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  ConnexionRoute: typeof ConnexionRoute
   ReservationRoute: typeof ReservationRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connexion': {
+      id: '/connexion'
+      path: '/connexion'
+      fullPath: '/connexion'
+      preLoaderRoute: typeof ConnexionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reservation': {
       id: '/reservation'
       path: '/reservation'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  ConnexionRoute: ConnexionRoute,
   ReservationRoute: ReservationRoute,
 }
 export const routeTree = rootRouteImport
