@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Clock, MapPin, Phone, Scissors, Sparkles, Star } from "lucide-react";
 import heroImage from "@/assets/salon-hero.jpg";
 import { Button } from "@/components/ui/button";
-import { OPENING_HOURS, SALON, SERVICES } from "@/lib/salon-data";
+import { SALON, SERVICES } from "@/lib/salon-data";
+import { OpeningHours } from "@/components/opening-hours";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -122,19 +123,7 @@ function Home() {
       <section className="mx-auto max-w-2xl px-6 pb-16">
         <p className="eyebrow">Horaires</p>
         <h2 className="mt-3 text-3xl">Nous vous accueillons</h2>
-        <ul className="mt-6 rounded-lg border border-border bg-card shadow-luxe">
-          {OPENING_HOURS.map((h) => (
-            <li
-              key={h.day}
-              className="flex justify-between border-b border-border px-4 py-3 text-sm last:border-0"
-            >
-              <span className="text-muted-foreground">{h.day}</span>
-              <span className={h.hours === "Fermé" ? "text-muted-foreground/60" : "text-gold"}>
-                {h.hours}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <OpeningHours />
         <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4 text-gold" /> {SALON.address}
         </p>

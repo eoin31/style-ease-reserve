@@ -24,6 +24,7 @@ import {
 } from "@/lib/bookings";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { ScheduleManager } from "@/components/schedule-manager";
 import { isSalonAdminUnlocked, lockSalonAdmin } from "@/lib/salon-gate.functions";
 
 
@@ -137,6 +138,9 @@ function Admin() {
           <TabsTrigger value="calendar" className="flex-1 text-xs">
             Calendrier
           </TabsTrigger>
+          <TabsTrigger value="hours" className="flex-1 text-xs">
+            Horaires
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="today">
           <BookingList items={todays} empty="Aucun rendez-vous aujourd'hui." actions={actions} />
@@ -154,6 +158,9 @@ function Admin() {
         </TabsContent>
         <TabsContent value="calendar">
           <CalendarView bookings={sorted} actions={actions} />
+        </TabsContent>
+        <TabsContent value="hours">
+          <ScheduleManager />
         </TabsContent>
       </Tabs>
     </main>
