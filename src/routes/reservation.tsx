@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Check, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SERVICES, isClosed, slotsForDate, type Service } from "@/lib/salon-data";
+import { SERVICES, type Service } from "@/lib/salon-data";
+import { DEFAULT_SCHEDULE, getSchedule, isDayClosed, scheduleSlots, type Schedule } from "@/lib/schedule";
 import { addBooking, takenSlots, toISODate, type Booking } from "@/lib/bookings";
 import { cn } from "@/lib/utils";
 
@@ -40,12 +41,14 @@ const contactSchema = z.object({
     .regex(/^(?:\+33|0)[1-9](?:[\s.-]?\d{2}){4}$/, "Numéro de téléphone invalide"),
 });
 
-function nextDays(count: number) {
+function nextDays(schedule: Schedule, count: number) {
   const days: Date[] = [];
   const d = new Date();
-  while (days.length < count) {
+  let guard = 0;
+  while (days.length < count && guard < 180) {
     d.setDate(d.getDate() + 1);
-    if (!isClosed(d)) days.push(new Date(d));
+    guard++;
+    if (!isDayClosed(schedule, d)) days.push(new Date(d));
   }
   return days;
 }
@@ -60,12 +63,18 @@ function Reservation() {
   const [errors, setErrors] = useState<{ firstName?: string | undefined; phone?: string | undefined }>({});
   const [confirmed, setConfirmed] = useState<Booking | null>(null);
 
-  const days = useMemo(() => nextDays(14), []);
+  const [schedule, setSchedule] = useState<Schedule>(DEFAULT_SCHEDULE);
+
+  useEffect(() => {
+    setSchedule(getSchedule());
+  }, []);
+
+  const days = useMemo(() => nextDays(schedule, 14), [schedule]);
   const slots = useMemo(() => {
     if (!date) return [];
     const taken = takenSlots(toISODate(date));
-    return slotsForDate(date).map((s) => ({ time: s, taken: taken.includes(s) }));
-  }, [date]);
+    return scheduleSlots(schedule, date).map((s) => ({ time: s, taken: taken.includes(s) }));
+  }, [date, schedule]);
 
   function submit() {
     const result = contactSchema.safeParse({ firstName, phone });
