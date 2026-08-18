@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Clock, MapPin, Phone, Scissors, Sparkles, Star } from "lucide-react";
 import heroImage from "@/assets/salon-hero.jpg";
 import { Button } from "@/components/ui/button";
-import { OPENING_HOURS, SALON, SERVICES } from "@/lib/salon-data";
+import { SALON, SERVICES } from "@/lib/salon-data";
+import { OpeningHours } from "@/components/opening-hours";
 
 export const Route = createFileRoute("/")({
   head: () => ({
