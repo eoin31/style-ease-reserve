@@ -126,19 +126,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-2xl items-center justify-between gap-3 px-6 py-3">
-          <Link to="/" className="font-display text-lg tracking-wide">
-            Maison Lumière
-          </Link>
-          <Link
-            to="/admin"
-            className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-4 py-2 text-[11px] tracking-widest text-gold uppercase transition-colors hover:bg-gold/10"
-          >
-            Espace coiffeur
-          </Link>
-        </div>
-      </header>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
