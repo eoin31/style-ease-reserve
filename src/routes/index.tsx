@@ -113,7 +113,10 @@ function Home() {
           ))}
         </ul>
         <Button asChild size="lg" className="mt-8 h-12 w-full text-sm tracking-widest uppercase">
-          <Link to="/reservation">Prendre rendez-vous</Link>
+          <a href={`tel:${SALON.phone.replace(/\s/g, "")}`}>
+            <Phone className="mr-2 h-4 w-4" /> Prendre rendez-vous
+          </a>
+
         </Button>
       </section>
 
