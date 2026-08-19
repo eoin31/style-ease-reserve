@@ -80,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Maison Lumière — Salon de coiffure" },
       { name: "description", content: "Salon de coiffure & studio couleur à Paris. Réservation en ligne." },
       { name: "author", content: "Maison Lumière" },
+      { name: "google-site-verification", content: "m5QW7bkJppnXn_q8X4_lBj25Cuh-gg9XSEr_FjMDyuo" },
       { property: "og:title", content: "Maison Lumière — Salon de coiffure" },
       { property: "og:description", content: "Réservez votre coupe, couleur ou soin en ligne." },
       { property: "og:type", content: "website" },
