@@ -51,14 +51,12 @@ function Home() {
           </p>
           <div className="mt-8 flex flex-col gap-3">
             <Button asChild size="lg" className="h-12 text-sm tracking-widest uppercase">
-              <Link to="/reservation">Prendre rendez-vous</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 bg-transparent">
               <a href={`tel:${SALON.phone.replace(/\s/g, "")}`}>
-                <Phone className="mr-2 h-4 w-4" /> {SALON.phone}
+                <Phone className="mr-2 h-4 w-4" /> Prendre rendez-vous
               </a>
             </Button>
           </div>
+
           <div className="mt-8 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <span className="flex text-gold">
               {[0, 1, 2, 3, 4].map((i) => (
