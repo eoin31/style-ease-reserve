@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, Phone, Scissors, Sparkles, Star } from "lucide-react";
 import heroImage from "@/assets/salon-hero.jpg";
 import { Button } from "@/components/ui/button";
