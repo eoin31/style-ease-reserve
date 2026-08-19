@@ -55,7 +55,14 @@ function Home() {
                 <Phone className="mr-2 h-4 w-4" /> Prendre rendez-vous
               </a>
             </Button>
+            <a
+              href={`tel:${SALON.phone.replace(/\s/g, "")}`}
+              className="font-display text-2xl text-gold"
+            >
+              {SALON.phone}
+            </a>
           </div>
+
 
           <div className="mt-8 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <span className="flex text-gold">
