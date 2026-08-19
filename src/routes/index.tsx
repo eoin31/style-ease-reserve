@@ -133,9 +133,8 @@ function Home() {
       <footer className="border-t border-border px-6 py-8 text-center text-xs text-muted-foreground">
         <p className="font-display text-lg text-foreground">{SALON.name}</p>
         <p className="mt-2">{SALON.address}</p>
-        <Link to="/admin" className="mt-4 inline-block underline underline-offset-4">
-          Espace coiffeur
-        </Link>
+        <p className="mt-2">{SALON.phone}</p>
+
       </footer>
     </main>
   );
