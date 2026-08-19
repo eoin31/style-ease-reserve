@@ -57,7 +57,7 @@ function Home() {
             </Button>
             <a
               href={`tel:${SALON.phone.replace(/\s/g, "")}`}
-              className="font-display text-2xl text-gold"
+              className="font-sans text-xl font-medium tracking-[0.15em] text-gold"
             >
               {SALON.phone}
             </a>
