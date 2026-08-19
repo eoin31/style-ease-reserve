@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, Phone, Scissors, Sparkles, Star } from "lucide-react";
 import heroImage from "@/assets/salon-hero.jpg";
 import { Button } from "@/components/ui/button";
@@ -51,14 +51,12 @@ function Home() {
           </p>
           <div className="mt-8 flex flex-col gap-3">
             <Button asChild size="lg" className="h-12 text-sm tracking-widest uppercase">
-              <Link to="/reservation">Prendre rendez-vous</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 bg-transparent">
               <a href={`tel:${SALON.phone.replace(/\s/g, "")}`}>
-                <Phone className="mr-2 h-4 w-4" /> {SALON.phone}
+                <Phone className="mr-2 h-4 w-4" /> Prendre rendez-vous
               </a>
             </Button>
           </div>
+
           <div className="mt-8 flex items-center justify-center gap-2 text-xs text-muted-foreground">
             <span className="flex text-gold">
               {[0, 1, 2, 3, 4].map((i) => (
@@ -115,7 +113,10 @@ function Home() {
           ))}
         </ul>
         <Button asChild size="lg" className="mt-8 h-12 w-full text-sm tracking-widest uppercase">
-          <Link to="/reservation">Prendre rendez-vous</Link>
+          <a href={`tel:${SALON.phone.replace(/\s/g, "")}`}>
+            <Phone className="mr-2 h-4 w-4" /> Prendre rendez-vous
+          </a>
+
         </Button>
       </section>
 
@@ -132,9 +133,8 @@ function Home() {
       <footer className="border-t border-border px-6 py-8 text-center text-xs text-muted-foreground">
         <p className="font-display text-lg text-foreground">{SALON.name}</p>
         <p className="mt-2">{SALON.address}</p>
-        <Link to="/admin" className="mt-4 inline-block underline underline-offset-4">
-          Espace coiffeur
-        </Link>
+        <p className="mt-2">{SALON.phone}</p>
+
       </footer>
     </main>
   );
